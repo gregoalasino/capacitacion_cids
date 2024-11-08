@@ -1,0 +1,26 @@
+.container {
+    margin: 10px;
+  }
+  
+  .register-button {
+    float: right;
+    margin-bottom: 15px;
+  }
+  
+  .mat-elevation-z8 {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  table {
+    width: 100%;
+  }
+  
+  th, td {
+    text-align: center;
+  }
+  /* Estilo para la columna de Fecha contratación */
+.mat-column-fechaContratacion {
+    width: 150px; /* Ajusta el valor para obtener el ancho deseado */
+    text-align: center; /* Centra el contenido de la columna */
+  }

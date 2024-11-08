@@ -1,0 +1,22 @@
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  nav ul li {
+    margin: 15px 0;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  
+  nav ul li a:hover {
+    color: #3f51b5;
+  }
+  

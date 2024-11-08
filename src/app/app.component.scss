@@ -1,0 +1,32 @@
+.sidenav-container {
+    height: 100vh;
+  }
+  
+  .sidenav {
+    width: 250px;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    background-color: #3f51b5;
+    color: white;
+    padding: 10px 20px;
+  }
+  
+  .menu-button {
+    font-size: 36px;  // Tamaño del botón de menú
+    margin-right: 20px;
+  }
+  
+  .header-title {
+    font-size: 24px;
+    //font-weight: bold;
+    margin: 0;  // Elimina cualquier margen adicional
+  }
+  
+  .app-content {
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
