@@ -1,1 +1,38 @@
-<p>tareas works!</p>
+<div class="task-container">
+    <h2>Gestión de Tareas</h2>
+  
+    <!-- Formulario de tareas -->
+    <form [formGroup]="taskForm" (ngSubmit)="createTask()">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre de la Tarea</mat-label>
+        <input matInput formControlName="name" placeholder="Ejemplo: Implementación">
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput formControlName="description" placeholder="Descripción de la tarea"></textarea>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha Límite</mat-label>
+        <input matInput formControlName="fechaLimite" [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+  
+      <div class="button-container">
+        <button mat-raised-button color="primary" type="submit">Guardar</button>
+        <button mat-raised-button color="warn" type="button" (click)="taskForm.reset()">Limpiar</button>
+      </div>
+    </form>
+  
+    <!-- Lista de tareas -->
+    <div *ngFor="let task of tasks; let i = index" class="task-item">
+      <h3>{{ task.name }}</h3>
+      <p>{{ task.description }}</p>
+      <p>Fecha Límite: {{ task.fechaLimite }}</p>
+      <button mat-button color="accent" (click)="editTask(i)">Editar</button>
+      <button mat-button color="warn" (click)="deleteTask(i)">Eliminar</button>
+    </div>
+  </div>
+  

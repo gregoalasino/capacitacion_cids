@@ -2,16 +2,18 @@
 <div class="container form-background">
     <h2>Gestión de Roles</h2>
     <form [formGroup]="roleForm" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="outline">
-        <mat-label>Nombre del Rol</mat-label>
-        <input matInput formControlName="name" placeholder="Ejemplo: Administrador" />
-        <mat-error *ngIf="roleForm.get('name')?.hasError('required')">Este campo es obligatorio</mat-error>
-      </mat-form-field>
-  
-      <!-- Agrega otros campos de la misma forma -->
-  
-      <button mat-raised-button color="primary" type="submit">Guardar</button>
-      <button mat-raised-button color="warn" type="button" (click)="resetForm()">Limpiar</button>
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre del Rol</mat-label>
+          <input matInput formControlName="name" placeholder="Ejemplo: Administrador" />
+          <mat-error *ngIf="roleForm.get('name')?.hasError('required')">Este campo es obligatorio</mat-error>
+        </mat-form-field>
+    
+        <div class="button-container">
+          <button mat-raised-button color="primary" type="submit" >Guardar</button>
+          <button mat-raised-button color="warn" type="button" (click)="resetForm()">Limpiar</button>
+        </div>
+      </div>
     </form>
   </div>
 </div>

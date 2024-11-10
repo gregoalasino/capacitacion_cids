@@ -14,10 +14,21 @@
     width: 100%;               
   }
   
-  .button-group {
+  .button-container {
     display: flex;
-    justify-content: flex-end; 
-    gap: 8px;
-    margin-top: 16px;
+    justify-content: flex-end;
+    margin-top: -10px; 
+    margin-left: 90px;
+    gap: 12px;
+  }
+
+  .form-row {
+    display: flex;
+    align-items: center;
+  }
+  
+  .container {
+    max-width: 500px; 
+    margin: 0 auto;
   }
   

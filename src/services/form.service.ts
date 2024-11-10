@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class FormService {
   constructor(private fb: FormBuilder) {}
 
-  // Método para crear el formulario de desarrollador
+  // metodos para crear el formulario respectivo de cada component
   createDeveloperForm(): FormGroup {
     return this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
@@ -17,7 +17,6 @@ export class FormService {
     });
   }
 
-  // Método para crear el formulario de roles
   createRoleForm(): FormGroup {
     return this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
