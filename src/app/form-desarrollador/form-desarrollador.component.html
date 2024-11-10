@@ -1,0 +1,42 @@
+<div class="container">
+    <h2>Registrar desarrollador</h2>
+    <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" placeholder="Ingrese el nombre" />
+          <mat-error *ngIf="registroForm.get('nombre')?.hasError('required')">Este campo es obligatorio</mat-error>
+          <mat-error *ngIf="registroForm.get('nombre')?.hasError('minlength')">Debe tener al menos 3 caracteres</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Correo electrónico</mat-label>
+          <input matInput formControlName="correo" placeholder="Ingrese el correo electrónico" />
+          <mat-error *ngIf="registroForm.get('correo')?.hasError('required')">Este campo es obligatorio</mat-error>
+          <mat-error *ngIf="registroForm.get('correo')?.hasError('email')">Ingrese un correo válido</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Rol</mat-label>
+          <mat-select formControlName="rol">
+            <mat-option *ngFor="let rol of roles" [value]="rol">{{ rol }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="registroForm.get('rol')?.hasError('required')">Este campo es obligatorio</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Fecha contratación</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="fechaContratacion" />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="registroForm.get('fechaContratacion')?.hasError('required')">Este campo es obligatorio</mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="button-group">
+        <button mat-raised-button color="warn" type="button" (click)="resetForm()">Limpiar</button>
+        <button mat-raised-button color="primary" type="submit">Registrar</button>
+      </div>
+    </form>
+  </div>
+  

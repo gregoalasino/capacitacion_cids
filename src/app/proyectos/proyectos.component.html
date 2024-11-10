@@ -1,1 +1,63 @@
-<p>proyectos works!</p>
+<div class="form-background">
+    <div class="container">
+        <h2>Registrar Proyecto</h2>
+        <form [formGroup]="projectForm" (ngSubmit)="onSubmit()" class="form-container">
+        <div class="form-field">
+            <mat-form-field appearance="outline">
+            <mat-label>Nombre del Proyecto</mat-label>
+            <input matInput formControlName="name" placeholder="Nombre del proyecto" />
+            <mat-error *ngIf="projectForm.get('name')?.hasError('required')">Este campo es obligatorio</mat-error>
+            </mat-form-field>
+        </div>
+    
+        <div class="form-field">
+            <mat-form-field appearance="outline">
+            <mat-label>Descripción</mat-label>
+            <textarea matInput formControlName="description" placeholder="Descripción del proyecto"></textarea>
+            <mat-error *ngIf="projectForm.get('description')?.hasError('maxlength')">Máximo 200 caracteres</mat-error>
+            </mat-form-field>
+        </div>
+    
+        <div class="form-field">
+            <mat-form-field appearance="outline">
+            <mat-label>Fecha de Inicio</mat-label>
+            <input matInput [matDatepicker]="startPicker" formControlName="fechaInicio" />
+            <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+            <mat-datepicker #startPicker></mat-datepicker>
+            </mat-form-field>
+        </div>
+    
+        <div class="form-field">
+            <mat-form-field appearance="outline">
+            <mat-label>Fecha de Fin</mat-label>
+            <input matInput [matDatepicker]="endPicker" formControlName="fechaFin" />
+            <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+            <mat-datepicker #endPicker></mat-datepicker>
+            </mat-form-field>
+        </div>
+    
+        <div class="form-field">
+            <mat-form-field appearance="outline">
+            <mat-label>Fecha de Creación</mat-label>
+            <input matInput [matDatepicker]="creationPicker" formControlName="fechaCreacion" />
+            <mat-datepicker-toggle matSuffix [for]="creationPicker"></mat-datepicker-toggle>
+            <mat-datepicker #creationPicker></mat-datepicker>
+            </mat-form-field>
+        </div>
+    
+        <div class="form-field">
+            <mat-form-field appearance="outline">
+            <mat-label>Fecha de Actualización</mat-label>
+            <input matInput [matDatepicker]="updatePicker" formControlName="fechaAct" />
+            <mat-datepicker-toggle matSuffix [for]="updatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #updatePicker></mat-datepicker>
+            </mat-form-field>
+        </div>
+    
+        <div class="button-group">
+            <button mat-raised-button color="primary" type="submit" class="saveButton">Guardar</button>
+            <button mat-raised-button color="warn" type="button" (click)="resetForm()" class="resetButton">Limpiar</button>
+        </div>
+        </form>
+    </div>
+</div>

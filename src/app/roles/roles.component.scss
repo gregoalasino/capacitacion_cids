@@ -1,0 +1,23 @@
+.centered-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    min-height: 60vh;        
+  }
+  
+  .form-background {
+    background-color: #f5f5f5; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;          
+    width: 100%;               
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: flex-end; 
+    gap: 8px;
+    margin-top: 16px;
+  }
+  

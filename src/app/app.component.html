@@ -1,14 +1,26 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav mode="over" [(opened)]="isSidebarOpen" class="sidenav">
     <mat-nav-list>
-      <a mat-list-item (click)="navigateTo('')">
+      <a mat-list-item [routerLink]="['/']" routerLinkActive="active" (click)="isSidebarOpen = false">
         <mat-icon>home</mat-icon>
         Inicio
-      </a> <!--puedo usar routerLinkActive para el estilo scss-->
-      <a mat-list-item (click)="navigateTo('roles')"><mat-icon>person</mat-icon>Roles</a>
-      <a mat-list-item (click)="navigateTo('desarrolladores')"><mat-icon>computer</mat-icon>Desarrolladores</a>
-      <a mat-list-item (click)="navigateTo('proyectos')"><mat-icon>public</mat-icon>Proyectos</a>
-      <a mat-list-item (click)="navigateTo('tareas')"><mat-icon>book</mat-icon>Tareas</a>
+      </a>
+      <a mat-list-item [routerLink]="['/roles']" routerLinkActive="active" (click)="isSidebarOpen = false">
+        <mat-icon>person</mat-icon>
+        Roles
+      </a>
+      <a mat-list-item [routerLink]="['/desarrolladores']" routerLinkActive="active" (click)="isSidebarOpen = false">
+        <mat-icon>computer</mat-icon>
+        Desarrolladores
+      </a>
+      <a mat-list-item [routerLink]="['/proyectos']" routerLinkActive="active" (click)="isSidebarOpen = false">
+        <mat-icon>public</mat-icon>
+        Proyectos
+      </a>
+      <a mat-list-item [routerLink]="['/tareas']" routerLinkActive="active" (click)="isSidebarOpen = false">
+        <mat-icon>book</mat-icon>
+        Tareas
+      </a>
     </mat-nav-list>
   </mat-sidenav>
 

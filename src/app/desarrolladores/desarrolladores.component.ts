@@ -1,10 +1,11 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { Router, RouterModule } from '@angular/router';
 
 
 interface Desarrollador {
@@ -17,11 +18,12 @@ interface Desarrollador {
 @Component({
   selector: 'app-desarrolladores',
   standalone: true,
-  imports: [MatTableModule, MatButtonModule, MatIconModule, MatPaginator, CommonModule],
+  imports: [MatTableModule, MatButtonModule, MatIconModule, MatPaginator, CommonModule, RouterModule],
   templateUrl: './desarrolladores.component.html',
   styleUrls: ['./desarrolladores.component.scss']
 })
 export class DesarrolladoresComponent implements AfterViewInit{
+  private router = inject(Router);
   displayedColumns: string[] = ['nombre', 'correo', 'rol', 'fechaContratacion', 'acciones'];
 
   today(): Date {

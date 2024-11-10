@@ -1,6 +1,9 @@
 <div class="container">
-    <!-- Botón de registrar -->
-    <button mat-raised-button color="primary" class="register-button">Registrar</button>
+    <!-- Botón para abrir el formulario de registro -->
+    <a [routerLink]="['/desarrolladores/registrar']">
+      <button mat-raised-button color="primary">Registrar</button>
+    </a>
+    
   
     <!-- Tabla de desarrolladores -->
     <table mat-table [dataSource]="desarrolladores" class="mat-elevation-z8">
