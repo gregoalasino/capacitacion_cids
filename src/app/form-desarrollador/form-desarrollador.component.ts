@@ -25,11 +25,11 @@ import { MatButtonModule } from '@angular/material/button';
 export class FormDesarrolladorComponent {
   registroForm: FormGroup;
 
-  roles: string[] = ['Desarrollador', 'Tester', 'Administrador de base de datos', 'Analista funcional']; // Lista de roles
+  roles: string[] = ['Desarrollador', 'Tester', 'Administrador de base de datos', 'Analista funcional'];
 
   constructor(private fb: FormBuilder) {
     this.registroForm = this.fb.group({
-      nombre: ['', [Validators.required, Validators.minLength(3)]],
+      nombre: ['', [Validators.required, Validators.maxLength(20)]],
       correo: ['', [Validators.required, Validators.email]],
       rol: ['', Validators.required],
       fechaContratacion: ['', Validators.required]
@@ -39,7 +39,7 @@ export class FormDesarrolladorComponent {
   onSubmit() {
     if (this.registroForm.valid) {
       console.log('Datos del formulario:', this.registroForm.value);
-      // Aquí puedes enviar los datos al backend o procesarlos como desees
+      // aca van a tener q venir ls datos del back
     }
   }
 

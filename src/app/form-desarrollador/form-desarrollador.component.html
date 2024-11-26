@@ -35,7 +35,7 @@
   
       <div class="button-group">
         <button mat-raised-button color="warn" type="button" (click)="resetForm()">Limpiar</button>
-        <button mat-raised-button color="primary" type="submit">Registrar</button>
+        <button [disabled]="registroForm.invalid" mat-raised-button color="primary" type="submit">Registrar</button>
       </div>
     </form>
   </div>
