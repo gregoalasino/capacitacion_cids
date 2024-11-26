@@ -20,7 +20,7 @@
   
       <ng-container matColumnDef="rol">
         <th mat-header-cell *matHeaderCellDef> Rol </th>
-        <td mat-cell *matCellDef="let desarrollador"> {{ desarrollador.rol }} </td>
+        <td mat-cell *matCellDef="let desarrollador"> {{ desarrollador.rol?.nombre }} </td>
       </ng-container>
   
       <ng-container matColumnDef="fechaContratacion">

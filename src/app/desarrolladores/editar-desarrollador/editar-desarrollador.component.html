@@ -1,0 +1,22 @@
+<h2>Editar Desarrollador</h2>
+<form (ngSubmit)="guardarCambios()">
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre</mat-label>
+    <input matInput [(ngModel)]="desarrollador.nombre" name="nombre" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Correo</mat-label>
+    <input matInput [(ngModel)]="desarrollador.correo" name="correo" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Rol</mat-label>
+    <input matInput [(ngModel)]="desarrollador.rol.nombre" name="rol" />
+  </mat-form-field>
+
+  <div>
+    <button mat-raised-button color="primary" type="submit">Guardar</button>
+    <button mat-button mat-dialog-close>Cancelar</button>
+  </div>
+</form>

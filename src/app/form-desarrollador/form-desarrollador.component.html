@@ -19,7 +19,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Rol</mat-label>
           <mat-select formControlName="rol">
-            <mat-option *ngFor="let rol of roles" [value]="rol">{{ rol }}</mat-option>
+            <mat-option *ngFor="let rol of roles" [value]="rol.id">{{ rol.nombre }}</mat-option>
           </mat-select>
           <mat-error *ngIf="registroForm.get('rol')?.hasError('required')">Este campo es obligatorio</mat-error>
         </mat-form-field>

@@ -1,2 +1,37 @@
-<h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error deleniti harum magnam, accusamus id, sed fugiat delectus laborum voluptas quod natus ducimus soluta ex in nam exercitationem modi libero distinctio.</h1>
-<h3>Idem</h3>
+<div class="dashboard-container">
+    <div class="dashboard-header">
+      <h1>CIDS - Gestión de Proyectos</h1>
+      <p>Administra desarrolladores, roles, tareas y proyectos desde aquí.</p>
+    </div>
+  
+    <div class="dashboard-cards">
+      <mat-card class="card" (click)="navegar('desarrolladores')">
+        <mat-card-title>Desarrolladores</mat-card-title>
+        <mat-card-content>
+          <p>Gestiona tus desarrolladores.</p>
+        </mat-card-content>
+      </mat-card>
+  
+      <mat-card class="card" (click)="navegar('roles')">
+        <mat-card-title>Roles</mat-card-title>
+        <mat-card-content>
+          <p>Administra los roles disponibles.</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="card" (click)="navegar('tareas')">
+        <mat-card-title>Tareas</mat-card-title>
+        <mat-card-content>
+          <p>Controla las tareas disponibles.</p>
+        </mat-card-content>
+      </mat-card>
+  
+      <mat-card class="card" (click)="navegar('proyectos')">
+        <mat-card-title>Proyectos</mat-card-title>
+        <mat-card-content>
+          <p>Gestiona todos los proyectos.</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  

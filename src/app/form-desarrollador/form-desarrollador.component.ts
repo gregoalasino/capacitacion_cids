@@ -6,10 +6,21 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { DesarrolladorService } from '../services/desarrollador.service'; 
+import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-form-desarrollador',
   standalone: true,
+  providers: [
+    {
+      provide: MatDialogRef,
+      useValue: { close: () => {} }, 
+    },
+    { provide: MAT_DIALOG_DATA, useValue: {} }, 
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -17,7 +28,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule,
   ],
   templateUrl: './form-desarrollador.component.html',
   styleUrls: ['./form-desarrollador.component.scss']
@@ -25,9 +37,17 @@ import { MatButtonModule } from '@angular/material/button';
 export class FormDesarrolladorComponent {
   registroForm: FormGroup;
 
-  roles: string[] = ['Desarrollador', 'Tester', 'Administrador de base de datos', 'Analista funcional'];
+  roles = [
+    { id: 1, nombre: 'Desarrollador' },
+    { id: 2, nombre: 'Tester' },
+    { id: 3, nombre: 'Administrador de base de datos' },
+    { id: 4, nombre: 'Analista funcional' }
+  ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+    private desarrolladorService: DesarrolladorService, 
+    private dialogRef: MatDialogRef<FormDesarrolladorComponent> 
+  ) {
     this.registroForm = this.fb.group({
       nombre: ['', [Validators.required, Validators.maxLength(20)]],
       correo: ['', [Validators.required, Validators.email]],
@@ -38,10 +58,23 @@ export class FormDesarrolladorComponent {
 
   onSubmit() {
     if (this.registroForm.valid) {
-      console.log('Datos del formulario:', this.registroForm.value);
-      // aca van a tener q venir ls datos del back
+      const nuevoDesarrollador = this.registroForm.value;
+
+      nuevoDesarrollador.fechaContratacion = new Date(nuevoDesarrollador.fechaContratacion).toISOString();
+  
+      // Enviar los datos al backend
+      this.desarrolladorService.crearDesarrollador(nuevoDesarrollador).subscribe(
+        (resultado) => {
+          console.log('Desarrollador creado:', resultado);
+          this.dialogRef.close(resultado); // Cierra el modal y devuelve el desarrollador al componente principal
+        },
+        (error) => {
+          console.error('Error al crear el desarrollador:', error);
+        }
+      );
     }
   }
+  
 
   resetForm() {
     this.registroForm.reset();

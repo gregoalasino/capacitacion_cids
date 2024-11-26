@@ -28,7 +28,7 @@ export class DesarrolladorService {
 
   // Crear un nuevo desarrollador
   crearDesarrollador(payload: CrearDesarrolladorDto): Observable<Desarrollador> {
-    return this.http.post<Desarrollador>(this.DESARROLLADORES_URL, payload);
+    return this.http.post<Desarrollador>(`${this.DESARROLLADORES_URL}`, payload);
   }
 
   // Actualizar un desarrollador existente
