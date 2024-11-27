@@ -28,7 +28,6 @@
         <td mat-cell *matCellDef="let desarrollador" class="mat-column-fechaContratacion"> {{ desarrollador.fechaContratacion | date: 'dd/MM/yyyy' }} </td>
       </ng-container>
   
-      <!-- columna de acciones -->
       <ng-container matColumnDef="acciones">
         <th mat-header-cell *matHeaderCellDef> Acciones </th>
         <td mat-cell *matCellDef="let desarrollador">
@@ -44,7 +43,6 @@
         </td>
       </ng-container>
   
-      <!-- encabezado y filas de tabla -->
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>

@@ -1,22 +1,30 @@
 <h2>Editar Desarrollador</h2>
-<form (ngSubmit)="guardarCambios()">
+<form [formGroup]="developerForm" (ngSubmit)="onSubmit()" class="form-container">
+  <!-- Campo Nombre -->
   <mat-form-field appearance="fill">
     <mat-label>Nombre</mat-label>
-    <input matInput [(ngModel)]="desarrollador.nombre" name="nombre" />
+    <input matInput formControlName="nombre" />
   </mat-form-field>
 
+  <!-- Campo Correo -->
   <mat-form-field appearance="fill">
     <mat-label>Correo</mat-label>
-    <input matInput [(ngModel)]="desarrollador.correo" name="correo" />
+    <input matInput formControlName="correo" type="email" />
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
+  <!-- Campo Rol -->
+  <mat-form-field appearance="outline">
     <mat-label>Rol</mat-label>
-    <input matInput [(ngModel)]="desarrollador.rol.nombre" name="rol" />
+    <mat-select formControlName="rol">
+      <mat-option *ngFor="let rol of roles" [value]="rol.id">
+        {{ rol.nombre }}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
 
+  <!-- Botones -->
   <div>
     <button mat-raised-button color="primary" type="submit">Guardar</button>
-    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button type="button" (click)="onCancel()">Cancelar</button>
   </div>
 </form>

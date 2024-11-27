@@ -1,42 +1,61 @@
-import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormsModule } from '@angular/forms'; // Importa FormsModule
-import { MatFormFieldModule } from '@angular/material/form-field'; // Importa Material Form Field
-import { MatInputModule } from '@angular/material/input'; // Importa Material Input
-import { MatButtonModule } from '@angular/material/button'; // Botones de Material
-import { Desarrollador } from '../../Models'; // Importa el modelo de Desarrollador
-import { DesarrolladorService } from '../../services/desarrollador.service'; // Importa el servicio de Desarrollador
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-editar-desarrollador',
-  standalone: true, // Declarar como standalone
-  templateUrl: './editar-desarrollador.component.html',
-  //styleUrls: ['./editar-desarrollador.component.css'],
+  standalone: true,
   imports: [
-    FormsModule, // Import necesario para [(ngModel)]
-    MatFormFieldModule, // Campo de formulario
-    MatInputModule, // Input de Material
-    MatButtonModule, // Botones
+    CommonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule
   ],
+  templateUrl: './editar-desarrollador.component.html',
+  //styleUrls: ['./editar-desarrollador.component.scss']
 })
-export class EditarDesarrolladorComponent {
+export class EditarDesarrolladorComponent implements OnInit {
+  developerForm!: FormGroup;
+  roles = [
+    { id: 1, nombre: 'Desarrollador' },
+    { id: 2, nombre: 'Tester' },
+    { id: 3, nombre: 'Administrador de base de datos' },
+    { id: 4, nombre: 'Analista funcional' }
+  ];
+
   constructor(
-    @Inject(MAT_DIALOG_DATA) public desarrollador: any, // Datos inyectados desde el dialog
-    private dialogRef: MatDialogRef<EditarDesarrolladorComponent>, // Referencia del dialog
-    private desarrolladorService: DesarrolladorService
+    private fb: FormBuilder,
+    private dialogRef: MatDialogRef<EditarDesarrolladorComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-  guardarCambios() {
-    this.desarrolladorService
-      .actualizarDesarrollador(this.desarrollador.id, this.desarrollador)
-      .subscribe(
-        (resultado: Desarrollador) => {
-          console.log('Desarrollador actualizado:', resultado);
-          this.dialogRef.close(resultado);
-        },
-        (error) => {
-          console.error('Error al actualizar desarrollador:', error);
-        }
-      );
+  ngOnInit(): void {
+    this.developerForm = this.fb.group({
+      id: [this.data.id],
+      nombre: [this.data.nombre, Validators.required],
+      correo: [this.data.correo, [Validators.required, Validators.email]],
+      rol: [this.data.rol.id, Validators.required]
+    });
+  }
+
+  onSubmit(): void {
+    if (this.developerForm.valid) {
+      const resultado = {
+        ...this.developerForm.value,
+        rol: this.roles.find((rol) => rol.id === this.developerForm.value.rol)
+      };
+      this.dialogRef.close(resultado); // Cerrar el diálogo y enviar los datos
+    }
+  }
+
+  onCancel(): void {
+    this.dialogRef.close(); // Cerrar el diálogo sin enviar datos
   }
 }

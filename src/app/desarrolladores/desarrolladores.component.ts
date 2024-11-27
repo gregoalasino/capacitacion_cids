@@ -104,27 +104,44 @@ export class DesarrolladoresComponent implements OnInit, AfterViewInit {
     });
   }
 
-  editarDesarrollador(desarrollador: any) {
+  editarDesarrollador(desarrollador: Desarrollador): void {
+    if (!desarrollador.nombre && !desarrollador.correo && !desarrollador.rol && !desarrollador.fechaContratacion) {
+      this.mostrarMensaje('No se puede editar un desarrollador sin información completa');
+      return;
+    }
+  
     const dialogRef = this.dialog.open(EditarDesarrolladorComponent, {
-      data: { ...desarrollador }, // Pasa una copia del desarrollador al modal
+      data: { ...desarrollador } // Pasar una copia del desarrollador
     });
   
-    dialogRef.afterClosed().subscribe((resultado: any) => {
+    dialogRef.afterClosed().subscribe((resultado: Desarrollador) => {
       if (resultado) {
-        const index = this.desarrolladores.data.findIndex((d: Desarrollador) => d.id === resultado.id);
-
-        if (index !== -1) {
-        this.desarrolladores.data[index] = resultado;
-
-        this.desarrolladores.data = [...this.desarrolladores.data];
-      } else {
-        console.warn('No se encontró el desarrollador actualizado en la lista.');
+        // Llamar al servicio para actualizar los datos en el backend
+        const id = resultado.id; // Obtén el ID del desarrollador
+        const payload = { ...resultado }; // Construye el payload con los datos actualizados
+  
+        this.desarrolladorService.actualizarDesarrollador(id, payload).subscribe(
+          (actualizado) => {
+            // Encuentra el índice del desarrollador actualizado
+            const index = this.desarrolladores.data.findIndex((d) => d.id === actualizado.id);
+  
+            if (index !== -1) {
+              this.desarrolladores.data[index] = actualizado;
+  
+              // Refresca la tabla para reflejar los cambios
+              this.desarrolladores.data = [...this.desarrolladores.data];
+              this.mostrarMensaje('Desarrollador actualizado correctamente');
+            }
+          },
+          (error) => {
+            console.error('Error al actualizar el desarrollador:', error);
+            this.mostrarMensaje('Error al actualizar el desarrollador');
+          }
+        );
       }
-    }
-  });
+    });
   }
   
-
   
   mostrarMensaje(mensaje: string): void {
     this.snackBar.open(mensaje, 'Cerrar', {
