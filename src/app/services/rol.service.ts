@@ -28,6 +28,6 @@ export class RolService {
   //  return this.http.post(this.ROLES_URL, { nombre });
   //}
   crearRol(nombre: string): Observable<any> {
-    return this.http.post(`${this.ROLES_URL}/roles`, { nombre });
+    return this.http.post(`${this.ROLES_URL}`, { nombre });
   }
 }

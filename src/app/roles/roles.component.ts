@@ -10,6 +10,7 @@ import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RolService, Rol } from '../services/rol.service';
 import { FormService } from '../../services/form.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-roles',
@@ -22,26 +23,31 @@ import { FormService } from '../../services/form.service';
     MatButtonModule,
     MatSnackBarModule,
     MatIconModule,
-    MatTableModule, // Para la tabla de roles
+    MatTableModule, 
   ],
   templateUrl: './roles.component.html',
   styleUrls: ['./roles.component.scss'],
 })
 export class RolesComponent implements OnInit {
   roleForm: FormGroup;
-  roles: Rol[] = []; // Lista de roles
+  roles: Rol[] = []; 
 
   constructor(
     private formService: FormService,
-    private rolService: RolService, // Inyección del servicio de roles
-    private snackBar: MatSnackBar // Para mostrar mensajes
+    private rolService: RolService, 
+    private snackBar: MatSnackBar,
+    private formBuilder: FormBuilder
   ) {
     this.roleForm = this.formService.createRoleForm();
   }
 
   ngOnInit(): void {
-    this.cargarRoles(); // Cargar roles al inicializar
+    this.cargarRoles(); // Mantén esta línea para cargar roles
+    this.roleForm = this.formBuilder.group({
+      nombre: ['', [Validators.required]] // Inicializa el control `nombre` con validaciones
+    });
   }
+  
 
   cargarRoles(): void {
     this.rolService.obtenerRoles().subscribe(
